@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Faisal Adam Yudithia">
+  <title>KATFA</title>
+  <link rel="shortcut icon" type="image/x-icon" href="ico/logo.ico">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="background" class="flex flex-col w-full bg-light">
+
+    <!-- NAVIGATION -->
+    <header id="nav" class="flex jst-center w-full pt-6 pb-4">
+      <div id="nav__box" class="flex jst-between border-b w-480">
+
+        <div class="flex alg-center jst-start w-full">
+          <!-- <p class="nav__button ml-8 mr-8 off">[IF]</p> -->
+          <i class="fa-solid fa-circle-info nav__button ml-8 mr-8"></i>
+          <!-- <i class="uil uil-info-circle nav__button ml-8 mr-8"></i> -->
+        </div>
+
+        <div class="flex jst-center w-full">
+          <h1>KAT<span style="color: red;">F</span>A</h1>
+          <p id="game__count" class="pt-8"></p>
+        </div>
+
+        <div class="flex alg-center jst-end w-full">
+          <!-- <p class="nav__button ml-8 mr-8 off">[ST]</p> -->
+          <i class="fa-solid fa-chart-simple nav__button ml-8 mr-8"></i>
+          <!-- <i class="uil uil-chart nav__button ml-8 mr-8"></i> -->
+          <!-- <p class="nav__button ml-8 mr-8 off">[SG]</p> -->
+          <i class="fa-solid fa-gear nav__button ml-8 mr-8"></i>
+          <!-- <i class="uil uil-setting nav__button ml-8 mr-8"></i> -->
+        </div>
+
+      </div>
+    </header>
+
+    <!-- SCORE -->
+    <section id="score" class="flex jst-center alg-center w-full pt-4">
+
+      <div class="flex ml-16 mr-16">
+        <p>Menang :&#160;</p>
+        <p id="score__win"></p>
+      </div>
+
+      <div class="flex ml-16 mr-16">
+        <p>Kalah :&#160;</p>
+        <p id="score__lose"></p>
+      </div>
+
+    </section>
+
+    <!-- BOARD -->
+    <section id="board" class="flex jst-center alg-center w-full pt-4 pb-4">
+      <div id="board__box" class="flex flex-col jst-center alg-center w-480">
+
+        <div class="flex board__row">
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+        </div>
+
+        <div class="flex board__row">
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+        </div>
+
+        <div class="flex board__row">
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+        </div>
+
+        <div class="flex board__row">
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+        </div>
+
+        <div class="flex board__row">
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+        </div>
+
+        <div class="flex board__row">
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+          <div class="flex jst-center alg-center ans__box m-8-4"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- KEYBOARD -->
+    <section id="keyboard" class="flex jst-center w-full pt-4 pb-6">
+      <div id="key__box" class="flex flex-col alg-center w-480">
+
+        <div class="flex">
+          <button class="key key__char m-4">Q</button>
+          <button class="key key__char m-4">W</button>
+          <button class="key key__char m-4">E</button>
+          <button class="key key__char m-4">R</button>
+          <button class="key key__char m-4">T</button>
+          <button class="key key__char m-4">Y</button>
+          <button class="key key__char m-4">U</button>
+          <button class="key key__char m-4">I</button>
+          <button class="key key__char m-4">O</button>
+          <button class="key key__char m-4">P</button>
+          <button id="key__theme" class="key m-4 bg-grey-light">
+            <!-- <p class="off">[TH]</p> -->
+            <!-- <i class="fa-solid fa-table-cells-large"></i> -->
+            <i class="fa-solid fa-eraser"></i>
+          </button>
+        </div>
+
+        <div class="flex">
+          <button class="key key__char m-4">A</button>
+          <button class="key key__char m-4">S</button>
+          <button class="key key__char m-4">D</button>
+          <button class="key key__char m-4">F</button>
+          <button class="key key__char m-4">G</button>
+          <button class="key key__char m-4">H</button>
+          <button class="key key__char m-4">J</button>
+          <button class="key key__char m-4">K</button>
+          <button class="key key__char m-4">L</button>
+          <button id="key__bspace" class="key m-4 bg-grey-light">
+            <!-- <p class="off">[BS]</p> -->
+            <i class="fa-solid fa-delete-left"></i>
+            <!-- <i class="uil uil-backspace"></i> -->
+          </button>
+        </div>
+
+        <div class="flex">
+          <button class="key key__char m-4">Z</button>
+          <button class="key key__char m-4">X</button>
+          <button class="key key__char m-4">C</button>
+          <button class="key key__char m-4">V</button>
+          <button class="key key__char m-4">B</button>
+          <button class="key key__char m-4">N</button>
+          <button class="key key__char m-4">M</button>
+          <button id="key__enter" class="key m-4 bg-grey-light">
+            enter
+            <!-- <i class="fa-solid fa-arrow-turn-down-left"></i> -->
+            <!-- <i class="uil uil-enter"></i> -->
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- WARNING MESSAGE -->
+  <section id="warn" class="flex jst-center alg-center w-full h-full popup hidden">
+    <div id="warn__box" class="flex flex-col jst-center alg-center popup__box p-16 w-320 h-200 bg-light-rgba">
+
+      <div class="flex jst-end w-full h-full">
+        <!-- <p id="warn__close" class="close off">[CL]</p> -->
+        <i id="warn__close" class="fa-solid fa-xmark close"></i>
+      </div>
+
+      <div class="flex txt-center flex-col w-full">
+        <p id="warn__text"></p>
+      </div>
+
+      <div class="flex flex-col jst-end txt-center h-full">
+        <a id="warn__link" class="" href="https://kbbi.kemdikbud.go.id/" target="_blank">
+          <button id="warn__button" class="p-4">
+            Lihat Arti Kata Selengkapnya di KBBI
+          </button>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section id="guide" class="flex jst-center alg-center w-full h-full nav__popup popup hidden">
+    <div id="guide__box" class="flex flex-col jst-between alg-center popup__box p-16 w-480 h-640 bg-light-rgba">
+
+      <div class="flex flex-col jst-center alg-center w-full h-full">
+
+        <div class="flex jst-end w-full">
+          <!-- <p id="guide__close" class="close off">[CL]</p> -->
+          <i id="guide__close" class="fa-solid fa-xmark close"></i>
+        </div>
+
+        <div id="guide__intro" class="flex flex-col guide__content w-full">
+          <h2 class="txt-center pt-4 pb-4">Cara Bermain</h2>
+
+          <p class="pt-4 pb-4">
+            Tebak <b>KAT<span style="color: red;">F</span>A</b> dalam 6 kesempatan.
+            Permainan ini berisi 6000+ kata rahasia.
+          </p>
+          <p class="pt-4 pb-4">
+            Setiap tebakan harus merupakan kata dengan 5 huruf yang tersedia di KBBI.
+            Tekan tombol ENTER untuk mengirimkan jawaban.
+          </p>
+          <p class="pt-4 pb-4">
+            Setelah jawaban dikirimkan, warna kotak akan berubah
+            untuk menunjukkan seberapa dekat tebakanmu dari kata rahasia.
+          </p>
+
+        </div>
+
+        <div id="guide__ex" class="flex flex-col guide__content w-full">
+          <h3 class="pt-4 pb-4">Contoh</h3>
+
+          <div class="flex">
+            <div class="flex jst-center alg-center ex__box m-8-4 bg-green col-white">B</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">A</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">T</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">U</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">K</div>
+          </div>
+          <p>Huruf <b>B</b> ada dan posisinya sudah tepat.</p>
+
+          <div class="flex">
+            <div class="flex jst-center alg-center ex__box m-8-4">P</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">U</div>
+            <div class="flex jst-center alg-center ex__box m-8-4 bg-orange col-white">T</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">A</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">R</div>
+          </div>
+          <p>Huruf <b>T</b> ada namun posisinya belum tepat.</p>
+
+          <div class="flex">
+            <div class="flex jst-center alg-center ex__box m-8-4">P</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">I</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">A</div>
+            <div class="flex jst-center alg-center ex__box m-8-4">N</div>
+            <div class="flex jst-center alg-center ex__box m-8-4 bg-grey col-white">O</div>
+          </div>
+          <p>Tidak ada huruf <b>O</b> di kata rahasia.</p>
+
+        </div>
+
+        <div class="flex w-full h-full"></div>
+
+      </div>
+
+      <div class="flex jst-center alg-center copyright w-full">
+        <p>Inspired by KATLA & WORDL</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATISTICS -->
+  <section id="stats" class="flex jst-center alg-center w-full h-full nav__popup popup hidden">
+    <div id="stats__box" class="flex flex-col jst-between alg-center popup__box p-16 w-480 h-640 bg-light-rgba">
+
+      <div class="flex flex-col jst-center alg-center w-full h-full">
+
+        <div class="flex jst-end w-full">
+          <!-- <p id="stats__close" class="close off">[CL]</p> -->
+          <i id="stats__close" class="fa-solid fa-xmark close"></i>
+        </div>
+
+        <div id="stats__intro" class="flex flex-col stats__content w-full">
+          <h2 class="txt-center pt-4 pb-4">STATISTIK</h2>
+
+          <div class="flex txt-center jst-around alg-center w-full">
+
+            <div class="flex flex-col jst-start alg-center h-full stats__container">
+              <div id="stats__game" class="flex jst-center alg-center stats__box m-8-4"></div>
+              <p class="stats__desc">Dimainkan</p>
+            </div>
+
+            <div class="flex flex-col jst-start alg-center h-full stats__container">
+              <div id="stats__win" class="flex jst-center alg-center stats__box m-8-4"></div>
+              <p class="stats__desc">% Menang</p>
+            </div>
+
+            <div class="flex flex-col jst-start alg-center h-full stats__container">
+              <div id="stats__streak" class="flex jst-center alg-center stats__box m-8-4"></div>
+              <p class="stats__desc">Runtutan<br>Saat Ini</p>
+            </div>
+
+            <div class="flex flex-col jst-start alg-center h-full stats__container">
+              <div id="stats__maxstreak" class="flex jst-center alg-center stats__box m-8-4"></div>
+              <p class="stats__desc">Runtutan<br>Maksimum</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="stats__dist" class="flex flex-col stats__content w-full">
+          <h3 class="pt-16 pb-4">Distribusi Tebakan</h3>
+
+          <div class="flex alg-center">
+            <p class="ans__num txt-center">1</p>
+            <div class="flex jst-end alg-center bg-grey col-white ans__dist mr-8 mt-4 mb-4 pl-12 pr-12">0</div>
+          </div>
+
+          <div class="flex alg-center">
+            <p class="ans__num txt-center">2</p>
+            <div class="flex jst-end alg-center bg-grey col-white ans__dist mr-8 mt-4 mb-4 pl-12 pr-12">0</div>
+          </div>
+
+          <div class="flex alg-center">
+            <p class="ans__num txt-center">3</p>
+            <div class="flex jst-end alg-center bg-grey col-white ans__dist mr-8 mt-4 mb-4 pl-12 pr-12">0</div>
+          </div>
+
+          <div class="flex alg-center">
+            <p class="ans__num txt-center">4</p>
+            <div class="flex jst-end alg-center bg-grey col-white ans__dist mr-8 mt-4 mb-4 pl-12 pr-12">0</div>
+          </div>
+
+          <div class="flex alg-center">
+            <p class="ans__num txt-center">5</p>
+            <div class="flex jst-end alg-center bg-grey col-white ans__dist mr-8 mt-4 mb-4 pl-12 pr-12">0</div>
+          </div>
+
+          <div class="flex alg-center">
+            <p class="ans__num txt-center">6</p>
+            <div class="flex jst-end alg-center bg-grey col-white ans__dist mr-8 mt-4 mb-4 pl-12 pr-12">0</div>
+          </div>
+
+        </div>
+
+        <div class="flex w-full h-full"></div>
+
+      </div>
+
+      <div class="flex jst-center alg-center copyright w-full">
+        <p>Inspired by KATLA & WORDL</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section id="settings" class="flex jst-center alg-center w-full h-full nav__popup popup hidden">
+    <div id="settings__box" class="flex flex-col jst-between alg-center popup__box p-16 w-480 h-640 bg-light-rgba">
+
+      <div class="flex flex-col jst-center alg-center w-full h-full">
+
+        <div class="flex jst-end w-full">
+          <!-- <p id="stats__close" class="close off">[CL]</p> -->
+          <i id="settings__close" class="fa-solid fa-xmark close"></i>
+        </div>
+
+        <div id="settings__opt" class="flex flex-col stats__content w-full">
+          <h2 class="txt-center pt-4 pb-4">PENGATURAN</h2>
+
+          <div class="flex jst-center alg-center border-b pb-8 pt-16 w-full">
+            <div class="flex flex-col pl-8 w-full">
+              <h3>Mode Gelap</h3>
+              <p class="settings__desc pt-4 pb-4">
+                Ubah tampilan warna aplikasi menjadi gelap
+              </p>
+            </div>
+            <div class="flex flex-col jst-start pl-12 pr-8 h-full">
+              <label class="switch">
+                <input id="dark__mode" type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- <div class="flex jst-center alg-center border-b pb-8 pt-16 w-full">
+            <div class="flex flex-col pl-8 w-full">
+              <h3>Lorem Ipsum</h3>
+              <p class="settings__desc pt-4 pb-4">
+                Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
+              </p>
+            </div>
+            <div class="flex flex-col jst-start pl-12 pr-8 h-full">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div> -->
+
+        </div>
+
+        <div class="flex flex-col jst-end alg-center pb-32 w-full h-full">
+          <h3 class="pt-16 pb-4">Informasi Aplikasi</h3>
+
+          <p id="app__info" class="pt-16 pl-8 pr-8 w-full">
+            <b>KATFA</b> by Faisalydth<br>
+            17 April 2022 - v1.0.0
+            <a href="https://github.com/faisalydth" target="_blank">
+              [Lihat Source Code]
+            </a>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="flex jst-center alg-center copyright w-full">
+        <p>Inspired by KATLA & WORDL</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
+  <script src="data/final.js"></script>
+  <script src="script.js"></script>
+</body>
