@@ -18,15 +18,27 @@ if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 
 // POPUP
 const navBtn = document.querySelectorAll(".nav-bttn");
+const popupClose = document.querySelectorAll(".popup-close");
 // Add click listener each navigation button to open n close popup window
 navBtn.forEach((navBtn) => {
 	navBtn.addEventListener("click", () => {
 		const parent = navBtn.parentElement;
-		const popup = parent.querySelector("section");
-		const close = popup.querySelector(".popup-close");
-		popup.classList.toggle("hidden");
-		close.onclick = () => {
-			popup.classList.toggle("hidden");
-		};
+		const popup = parent.querySelector(".popup");
+		popup.classList.remove("hidden");
 	});
 });
+
+popupClose.forEach((close) => {
+	close.addEventListener("click", () => {
+		const parent = close.parentElement;
+		parent.parentElement.classList.add("hidden");
+	});
+});
+
+// Message Incorrect close by timer for 2 second
+const msgIncor = document.getElementById("msg-incor");
+if (!msgIncor.parentElement.classList.contains("hidden")) {
+	setTimeout(() => {
+		msgIncor.parentElement.classList.add("hidden");
+	}, 2000);
+}

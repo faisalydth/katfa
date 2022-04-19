@@ -27,7 +27,7 @@
 	<body>
 		<!-- MAIN -->
 		<div
-			class="px-4 flex flex-col justify-between h-full py-2 mx-auto laptop:w-1/3 laptop:py-8"
+			class="px-4 flex flex-col justify-between h-full py-4 md:py-6 mx-auto sm:max-w-screen-sm laptop:py-8"
 		>
 			<!-- NAVIGATION -->
 			<header>
@@ -355,6 +355,68 @@
 				</div>
 			</section>
 		</div>
+
+		<!-- INCORRECT WORD MESSAGE -->
+		<section class="popup hidden">
+			<div
+				id="msg-incor"
+				class="popup-container min-h-[25%] flex justify-center items-center"
+			>
+				<button class="popup-close">
+					<i class="uil uil-times"></i>
+				</button>
+
+				<p class="text-2xl">Kata tidak tersedia di KBBI.</p>
+			</div>
+		</section>
+
+		<!-- CORRECT ANSWER (GAME WON) MESSAGE -->
+		<section class="popup hidden">
+			<div
+				id="msg-won"
+				class="popup-container min-h-[25%] flex flex-col items-center"
+			>
+				<button class="popup-close">
+					<i class="uil uil-times"></i>
+				</button>
+
+				<p class="text-2xl py-8 text-center">
+					Jawaban Benar!<br /><b class="msg-key uppercase">remoh</b>
+				</p>
+
+				<a
+					class="msg-link mt-auto p-2 bg-slate-300 rounded-md text-xs"
+					href="https://kbbi.kemdikbud.go.id/"
+					target="_blank"
+				>
+					<button class="msg-link-bttn">Lihat Arti Kata di KBBI</button>
+				</a>
+			</div>
+		</section>
+
+		<!-- INCORRECT ANSWER (GAME LOSE) MESSAGE -->
+		<section class="popup hidden">
+			<div
+				id="msg-lose"
+				class="popup-container min-h-[25%] flex flex-col items-center"
+			>
+				<button class="popup-close">
+					<i class="uil uil-times"></i>
+				</button>
+
+				<p class="text-2xl py-8 text-center capitalize">
+					Jawaban yang Benar adalah<br /><b class="msg-key uppercase">remoh</b>
+				</p>
+
+				<a
+					class="msg-link mt-auto p-2 bg-slate-300 rounded-md text-xs"
+					href="https://kbbi.kemdikbud.go.id/"
+					target="_blank"
+				>
+					<button class="msg-link-bttn">Lihat Arti Kata di KBBI</button>
+				</a>
+			</div>
+		</section>
 
 		<!-- JAVASCRIPT -->
 		<script type="application/javascript" src="data/final.js"></script>
