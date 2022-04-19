@@ -1,425 +1,398 @@
 <!DOCTYPE html>
 <html lang="en" class="">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="author"
-			content="Faisal Adam Yudithia & Farrel Ahmad Yudithia"
-		/>
-		<title>KATFA</title>
-		<link rel="shortcut icon" type="image/x-icon" href="ico/logo.ico" />
 
-		<!-- Font Poppins -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-			rel="stylesheet"
-		/>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Faisal Adam Yudithia & Farrel Ahmad Yudithia" />
+	<title>KATFA</title>
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="ico/logo.ico" /> -->
 
-		<!-- CSS -->
-		<link
-			rel="stylesheet"
-			href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-		/>
-		<link rel="stylesheet" href="style.css" />
-	</head>
+	<!-- Font Poppins -->
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet" />
 
-	<body>
-		<!-- MAIN -->
-		<div
-			class="px-4 flex flex-col justify-between h-full py-4 md:py-6 mx-auto sm:max-w-screen-sm laptop:py-8"
-		>
-			<!-- NAVIGATION -->
-			<header>
-				<!-- NAVIGATION CONTAINER -->
-				<div id="nav">
-					<!-- NAVIGATION BUTTON LEFT -->
-					<div>
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<!-- MAIN -->
+	<div class="px-4 flex flex-col justify-between h-full py-4 md:py-6 mx-auto sm:max-w-screen-sm laptop:py-8">
+		<!-- NAVIGATION -->
+		<header>
+			<!-- NAVIGATION CONTAINER -->
+			<div id="nav">
+				<!-- NAVIGATION BUTTON LEFT -->
+				<div>
+					<!-- Button -->
+					<button class="nav-bttn">
+						<i class="uil uil-question-circle"></i>
+					</button>
+
+					<!-- Popup -->
+					<section class="popup hidden">
+						<div id="game-info" class="popup-container">
+							<button class="popup-close">
+								<i class="uil uil-times"></i>
+							</button>
+
+							<h2 class="popup-title">CARA BERMAIN</h2>
+
+							<div class="flex flex-col gap-2 mb-4">
+								<p>
+									Tebak <b>KAT<span style="color: red">F</span>A</b> dalam 6
+									kesempatan. Permainan ini berisi 6000+ kata rahasia.
+								</p>
+								<p>
+									Setiap tebakan harus merupakan kata dengan 5 huruf yang
+									tersedia di KBBI. Tekan tombol ENTER untuk mengirimkan
+									jawaban.
+								</p>
+								<p>
+									Setelah jawaban dikirimkan, warna kotak akan berubah untuk
+									menunjukkan seberapa dekat tebakanmu dari kata rahasia.
+								</p>
+							</div>
+
+							<div>
+								<h3 class="">Contoh</h3>
+								<p>Kata rahasia (yang ditebak) adalah <b>SEMUA</b>.</p>
+								<div class="flex gap-1 py-2">
+									<span class="board-char-ex box-grey">L</span>
+									<span class="board-char-ex box-grey">A</span>
+									<span class="board-char-ex box-green">M</span>
+									<span class="board-char-ex box-grey">P</span>
+									<span class="board-char-ex box-orange">U</span>
+								</div>
+								<div class="flex flex-col">
+									<p>Huruf <b>M</b> ada dan posisinya sudah tepat.</p>
+									<p>Huruf <b>U</b> ada dan posisinya belum tepat.</p>
+									<p>
+										Huruf <b>L</b>, <b>A</b>, dan <b>P</b> tidak ada di kata
+										rahasia.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- TITLE & GAME COUNTER -->
+
+				<div class="title-container">
+					<h1 id="title">KAT<span style="color: red">F</span>A</h1>
+					<p>#<span id="game-counter">1</span></p>
+				</div>
+
+				<!-- NAVIGATION BUTTON LEFT -->
+
+				<div>
+					<div class="inline-block">
 						<!-- Button -->
 						<button class="nav-bttn">
-							<i class="uil uil-question-circle"></i>
+							<i class="uil uil-info-circle"></i>
 						</button>
 
 						<!-- Popup -->
 						<section class="popup hidden">
-							<div id="game-info" class="popup-container">
+							<div id="game-stats" class="popup-container">
 								<button class="popup-close">
-									<i class="uil uil-times"></i>
+									<i id="close" class="uil uil-times"></i>
 								</button>
 
-								<h2 class="popup-title">CARA BERMAIN</h2>
+								<h2 class="popup-title">STATISTIK PERMAINAN</h2>
 
-								<div class="flex flex-col gap-2 mb-4">
-									<p>
-										Tebak <b>KAT<span style="color: red">F</span>A</b> dalam 6
-										kesempatan. Permainan ini berisi 6000+ kata rahasia.
-									</p>
-									<p>
-										Setiap tebakan harus merupakan kata dengan 5 huruf yang
-										tersedia di KBBI. Tekan tombol ENTER untuk mengirimkan
-										jawaban.
-									</p>
-									<p>
-										Setelah jawaban dikirimkan, warna kotak akan berubah untuk
-										menunjukkan seberapa dekat tebakanmu dari kata rahasia.
-									</p>
+								<div class="flex justify-between text-center gap-4 mb-4">
+									<div>
+										<p class="stats" id="stats-game">0</p>
+										<p>Dimainkan</p>
+									</div>
+									<div>
+										<p class="stats" id="stats-won">0</p>
+										<p>% Menang</p>
+									</div>
+									<div>
+										<p class="stats" id="stats-str-cur">0</p>
+										<p>Runtutan<br />Saat Ini</p>
+									</div>
+									<div>
+										<p class="stats" id="stats-str-max">0</p>
+										<p>Runtutan<br />Maksimum</p>
+									</div>
 								</div>
 
-								<div>
-									<h3 class="">Contoh</h3>
-									<p>Kata rahasia (yang ditebak) adalah <b>SEMUA</b>.</p>
-									<div class="flex gap-1 py-2">
-										<span class="board-char-ex box-grey">L</span>
-										<span class="board-char-ex box-grey">A</span>
-										<span class="board-char-ex box-green">M</span>
-										<span class="board-char-ex box-grey">P</span>
-										<span class="board-char-ex box-orange">U</span>
+								<div class="flex flex-col gap-2">
+									<h3>Distribusi Tebakan</h3>
+									<div class="dist">
+										<p>1</p>
+										<p class="dist-ans box-grey">0</p>
 									</div>
-									<div class="flex flex-col">
-										<p>Huruf <b>M</b> ada dan posisinya sudah tepat.</p>
-										<p>Huruf <b>U</b> ada dan posisinya belum tepat.</p>
-										<p>
-											Huruf <b>L</b>, <b>A</b>, dan <b>P</b> tidak ada di kata
-											rahasia.
-										</p>
+									<div class="dist">
+										<p>2</p>
+										<p class="dist-ans box-grey">0</p>
+									</div>
+									<div class="dist">
+										<p>3</p>
+										<p class="dist-ans box-grey">0</p>
+									</div>
+									<div class="dist">
+										<p>4</p>
+										<p class="dist-ans box-grey">0</p>
+									</div>
+									<div class="dist">
+										<p>5</p>
+										<p class="dist-ans box-grey">0</p>
+									</div>
+									<div class="dist">
+										<p>6</p>
+										<p class="dist-ans box-grey">0</p>
 									</div>
 								</div>
 							</div>
 						</section>
 					</div>
 
-					<!-- TITLE & GAME COUNTER -->
+					<div class="inline-block">
+						<!-- Button -->
+						<button class="nav-bttn">
+							<i class="uil uil-setting"></i>
+						</button>
 
-					<div class="title-container">
-						<h1 id="title">KAT<span style="color: red">F</span>A</h1>
-						<span id="game-counter">#1</span>
-					</div>
+						<!-- Popup -->
+						<section class="popup hidden">
+							<div id="game-sets" class="popup-container flex flex-col justify-between">
+								<button class="popup-close">
+									<i class="uil uil-times"></i>
+								</button>
 
-					<!-- NAVIGATION BUTTON LEFT -->
+								<div>
+									<h2 class="popup-title">PENGATURAN</h2>
 
-					<div>
-						<div class="inline-block">
-							<!-- Button -->
-							<button class="nav-bttn">
-								<i class="uil uil-info-circle"></i>
-							</button>
-
-							<!-- Popup -->
-							<section class="popup hidden">
-								<div id="game-stats" class="popup-container">
-									<button class="popup-close">
-										<i id="close" class="uil uil-times"></i>
-									</button>
-
-									<h2 class="popup-title">STATISTIK PERMAINAN</h2>
-
-									<div class="flex justify-between text-center gap-4 mb-4">
+									<div class="flex justify-between gap-8 pb-2 border-b-2 border-black dark:border-white">
 										<div>
-											<p class="stats" id="stats-game">0</p>
-											<p>Dimainkan</p>
+											<h3>Mode Gelap</h3>
+											<p class="text-xxs md:text-xs">
+												Ubah tampilan warna aplikasi menjadi gelap
+											</p>
 										</div>
-										<div>
-											<p class="stats" id="stats-won">0</p>
-											<p>% Menang</p>
-										</div>
-										<div>
-											<p class="stats" id="stats-str-cur">0</p>
-											<p>Runtutan<br />Saat Ini</p>
-										</div>
-										<div>
-											<p class="stats" id="stats-str-max">0</p>
-											<p>Runtutan<br />Maksimum</p>
-										</div>
-									</div>
 
-									<div class="flex flex-col gap-2">
-										<h3>Distribusi Tebakan</h3>
-										<div class="dist">
-											<p>1</p>
-											<p class="dist-ans">0</p>
-										</div>
-										<div class="dist">
-											<p>2</p>
-											<p class="dist-ans">0</p>
-										</div>
-										<div class="dist">
-											<p>3</p>
-											<p class="dist-ans">0</p>
-										</div>
-										<div class="dist">
-											<p>4</p>
-											<p class="dist-ans">0</p>
-										</div>
-										<div class="dist">
-											<p>5</p>
-											<p class="dist-ans">0</p>
-										</div>
+										<label class="switch">
+											<input id="dark-mode" type="checkbox" class="hidden" />
+											<div class="slider"></div>
+										</label>
 									</div>
 								</div>
-							</section>
-						</div>
 
-						<div class="inline-block">
-							<!-- Button -->
-							<button class="nav-bttn">
-								<i class="uil uil-setting"></i>
-							</button>
+								<div>
+									<h3 class="text-center mb-2 md:mb-4">Informasi Aplikasi</h3>
 
-							<!-- Popup -->
-							<section class="popup hidden">
-								<div
-									id="game-sets"
-									class="popup-container flex flex-col justify-between"
-								>
-									<button class="popup-close">
-										<i class="uil uil-times"></i>
-									</button>
+									<div class="mb-2 md:mb-4">
+										<p>
+											<b>KAT<span style="color: red">F</span>A</b> by
+											<a href="https://github.com/faisalydth" target="_blank"><i
+													class="uil uil-github mr-1"></i>faisalydth
+											</a>
+											&#215;
+											<a href="https://github.com/farrelfay" target="_blank"><i
+													class="uil uil-github mr-1"></i>farrelfay</a>
+										</p>
 
-									<div>
-										<h2 class="popup-title">PENGATURAN</h2>
-
-										<div
-											class="flex justify-between gap-8 pb-2 border-b-2 border-black dark:border-white"
-										>
-											<div>
-												<h3>Mode Gelap</h3>
-												<p class="text-xxs md:text-xs">
-													Ubah tampilan warna aplikasi menjadi gelap
-												</p>
-											</div>
-
-											<label class="switch">
-												<input id="dark-mode" type="checkbox" class="hidden" />
-												<div class="slider"></div>
-											</label>
-										</div>
-									</div>
-
-									<div>
-										<h3 class="text-center mb-2 md:mb-4">Informasi Aplikasi</h3>
-
-										<div class="mb-2 md:mb-4">
+										<div class="text-xxs md:text-sm text-slate-500">
+											<p>v1.0.0 - 17 April 2022</p>
 											<p>
-												<b>KAT<span style="color: red">F</span>A</b> by
-												<a href="https://github.com/faisalydth" target="_blank"
-													><i class="uil uil-github mr-1"></i>faisalydth
+												v1.1.0 - 24 April 2022
+												<a href="https://github.com/faisalydth/katla-imitation" target="_blank"
+													class="text-xxs md:text-xs text-slate-400">
+													[Lihat Source Code]
 												</a>
-												&#215;
-												<a href="https://github.com/farrelfay" target="_blank"
-													><i class="uil uil-github mr-1"></i>farrelfay</a
-												>
-											</p>
-
-											<div class="text-xxs md:text-sm text-slate-500">
-												<p>v1.0.0 - 17 April 2022</p>
-												<p>
-													v1.1.0 - 24 April 2022
-													<a
-														href="https://github.com/faisalydth/katla-imitation"
-														target="_blank"
-														class="text-xxs md:text-xs text-slate-400"
-													>
-														[Lihat Source Code]
-													</a>
-												</p>
-											</div>
-										</div>
-
-										<div>
-											<p class="text-xxs md:text-xs text-center">
-												Inspired by Katla & Wordle
 											</p>
 										</div>
 									</div>
+
+									<div>
+										<p class="text-xxs md:text-xs text-center">
+											Inspired by Katla & Wordle
+										</p>
+									</div>
 								</div>
-							</section>
-						</div>
+							</div>
+						</section>
 					</div>
 				</div>
+			</div>
 
-				<!-- SCORE CONTAINER -->
-				<div class="score-container">
-					<!-- GAME WON SCORE -->
-					<div>
-						<p>Menang : <span id="score-won">0</span></p>
-					</div>
-
-					<!-- GAME LOSE SCORE -->
-					<div>
-						<p>Kalah : <span id="score-lose">0</span></p>
-					</div>
+			<!-- SCORE CONTAINER -->
+			<div class="score-container">
+				<!-- GAME WON SCORE -->
+				<div>
+					<p>Menang : <span id="score-won">0</span></p>
 				</div>
-			</header>
 
-			<!-- BOARD -->
-			<section id="board-section">
-				<!-- BOARD CONTAINER -->
-				<div id="board">
-					<div class="board-word">
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-					</div>
-
-					<div class="board-word">
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-					</div>
-
-					<div class="board-word">
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-					</div>
-
-					<div class="board-word">
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-					</div>
-
-					<div class="board-word">
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-					</div>
-
-					<div class="board-word">
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-						<span class="board-char"></span>
-					</div>
+				<!-- GAME LOSE SCORE -->
+				<div>
+					<p>Kalah : <span id="score-lose">0</span></p>
 				</div>
-			</section>
+			</div>
+		</header>
 
-			<!-- KEYBOARD -->
-			<section>
-				<!-- KEYBOARD CONTAINER -->
-				<div id="keybrd">
-					<div class="keybrd-row">
-						<button class="keybrd-key keybrd-char">Q</button>
-						<button class="keybrd-key keybrd-char">W</button>
-						<button class="keybrd-key keybrd-char">E</button>
-						<button class="keybrd-key keybrd-char">R</button>
-						<button class="keybrd-key keybrd-char">T</button>
-						<button class="keybrd-key keybrd-char">Y</button>
-						<button class="keybrd-key keybrd-char">U</button>
-						<button class="keybrd-key keybrd-char">I</button>
-						<button class="keybrd-key keybrd-char">O</button>
-						<button class="keybrd-key keybrd-char">P</button>
-						<button id="keybrd-erase" class="keybrd-key">
-							<i class="uil uil-times-square"></i>
-						</button>
-					</div>
-
-					<div class="keybrd-row">
-						<button class="keybrd-key keybrd-char">A</button>
-						<button class="keybrd-key keybrd-char">S</button>
-						<button class="keybrd-key keybrd-char">D</button>
-						<button class="keybrd-key keybrd-char">F</button>
-						<button class="keybrd-key keybrd-char">G</button>
-						<button class="keybrd-key keybrd-char">H</button>
-						<button class="keybrd-key keybrd-char">J</button>
-						<button class="keybrd-key keybrd-char">K</button>
-						<button class="keybrd-key keybrd-char">L</button>
-						<button id="keybrd-bspace" class="keybrd-key">
-							<i class="uil uil-backspace"></i>
-						</button>
-					</div>
-
-					<div class="keybrd-row">
-						<button class="keybrd-key keybrd-char">Z</button>
-						<button class="keybrd-key keybrd-char">X</button>
-						<button class="keybrd-key keybrd-char">C</button>
-						<button class="keybrd-key keybrd-char">V</button>
-						<button class="keybrd-key keybrd-char">B</button>
-						<button class="keybrd-key keybrd-char">N</button>
-						<button class="keybrd-key keybrd-char">M</button>
-						<button id="keybrd-enter" class="keybrd-key">
-							enter <i class="uil uil-enter"></i>
-						</button>
-					</div>
+		<!-- BOARD -->
+		<section id="board-section">
+			<!-- BOARD CONTAINER -->
+			<div id="board">
+				<div class="board-word">
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
 				</div>
-			</section>
+
+				<div class="board-word">
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+				</div>
+
+				<div class="board-word">
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+				</div>
+
+				<div class="board-word">
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+				</div>
+
+				<div class="board-word">
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+				</div>
+
+				<div class="board-word">
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+					<span class="board-char"></span>
+				</div>
+			</div>
+		</section>
+
+		<!-- KEYBOARD -->
+		<section>
+			<!-- KEYBOARD CONTAINER -->
+			<div id="keybrd">
+				<div class="keybrd-row">
+					<button class="keybrd-key keybrd-char">Q</button>
+					<button class="keybrd-key keybrd-char">W</button>
+					<button class="keybrd-key keybrd-char">E</button>
+					<button class="keybrd-key keybrd-char">R</button>
+					<button class="keybrd-key keybrd-char">T</button>
+					<button class="keybrd-key keybrd-char">Y</button>
+					<button class="keybrd-key keybrd-char">U</button>
+					<button class="keybrd-key keybrd-char">I</button>
+					<button class="keybrd-key keybrd-char">O</button>
+					<button class="keybrd-key keybrd-char">P</button>
+					<button id="keybrd-erase" class="keybrd-key">
+						<i class="uil uil-times-square"></i>
+					</button>
+				</div>
+
+				<div class="keybrd-row">
+					<button class="keybrd-key keybrd-char">A</button>
+					<button class="keybrd-key keybrd-char">S</button>
+					<button class="keybrd-key keybrd-char">D</button>
+					<button class="keybrd-key keybrd-char">F</button>
+					<button class="keybrd-key keybrd-char">G</button>
+					<button class="keybrd-key keybrd-char">H</button>
+					<button class="keybrd-key keybrd-char">J</button>
+					<button class="keybrd-key keybrd-char">K</button>
+					<button class="keybrd-key keybrd-char">L</button>
+					<button id="keybrd-bspace" class="keybrd-key">
+						<i class="uil uil-backspace"></i>
+					</button>
+				</div>
+
+				<div class="keybrd-row">
+					<button class="keybrd-key keybrd-char">Z</button>
+					<button class="keybrd-key keybrd-char">X</button>
+					<button class="keybrd-key keybrd-char">C</button>
+					<button class="keybrd-key keybrd-char">V</button>
+					<button class="keybrd-key keybrd-char">B</button>
+					<button class="keybrd-key keybrd-char">N</button>
+					<button class="keybrd-key keybrd-char">M</button>
+					<button id="keybrd-enter" class="keybrd-key">
+						enter <i class="uil uil-enter"></i>
+					</button>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- INCORRECT WORD MESSAGE -->
+	<section class="popup hidden">
+		<div id="msg-incor" class="popup-container min-h-[25%] flex justify-center items-center">
+			<button class="popup-close">
+				<i class="uil uil-times"></i>
+			</button>
+
+			<p class="text-2xl">Kata tidak tersedia di KBBI.</p>
 		</div>
+	</section>
 
-		<!-- INCORRECT WORD MESSAGE -->
-		<section class="popup hidden">
-			<div
-				id="msg-incor"
-				class="popup-container min-h-[25%] flex justify-center items-center"
-			>
-				<button class="popup-close">
-					<i class="uil uil-times"></i>
-				</button>
+	<!-- CORRECT ANSWER (GAME WON) MESSAGE -->
+	<section class="popup hidden">
+		<div id="msg-won" class="popup-container min-h-[25%] flex flex-col items-center">
+			<button class="popup-close">
+				<i class="uil uil-times"></i>
+			</button>
 
-				<p class="text-2xl">Kata tidak tersedia di KBBI.</p>
-			</div>
-		</section>
+			<p class="text-2xl py-8 text-center">
+				Jawaban Benar!<br /><b class="msg-key uppercase">remoh</b>
+			</p>
 
-		<!-- CORRECT ANSWER (GAME WON) MESSAGE -->
-		<section class="popup hidden">
-			<div
-				id="msg-won"
-				class="popup-container min-h-[25%] flex flex-col items-center"
-			>
-				<button class="popup-close">
-					<i class="uil uil-times"></i>
-				</button>
+			<a class="msg-link mt-auto p-2 bg-slate-300 rounded-md text-xs" href="https://kbbi.kemdikbud.go.id/"
+				target="_blank">
+				<button class="msg-link-bttn">Lihat Arti Kata di KBBI</button>
+			</a>
+		</div>
+	</section>
 
-				<p class="text-2xl py-8 text-center">
-					Jawaban Benar!<br /><b class="msg-key uppercase">remoh</b>
-				</p>
+	<!-- INCORRECT ANSWER (GAME LOSE) MESSAGE -->
+	<section class="popup hidden">
+		<div id="msg-lose" class="popup-container min-h-[25%] flex flex-col items-center">
+			<button class="popup-close">
+				<i class="uil uil-times"></i>
+			</button>
 
-				<a
-					class="msg-link mt-auto p-2 bg-slate-300 rounded-md text-xs"
-					href="https://kbbi.kemdikbud.go.id/"
-					target="_blank"
-				>
-					<button class="msg-link-bttn">Lihat Arti Kata di KBBI</button>
-				</a>
-			</div>
-		</section>
+			<p class="text-2xl py-8 text-center capitalize">
+				Jawaban yang Benar adalah<br /><b class="msg-key uppercase">remoh</b>
+			</p>
 
-		<!-- INCORRECT ANSWER (GAME LOSE) MESSAGE -->
-		<section class="popup hidden">
-			<div
-				id="msg-lose"
-				class="popup-container min-h-[25%] flex flex-col items-center"
-			>
-				<button class="popup-close">
-					<i class="uil uil-times"></i>
-				</button>
+			<a class="msg-link mt-auto p-2 bg-slate-300 rounded-md text-xs" href="https://kbbi.kemdikbud.go.id/"
+				target="_blank">
+				<button class="msg-link-bttn">Lihat Arti Kata di KBBI</button>
+			</a>
+		</div>
+	</section>
 
-				<p class="text-2xl py-8 text-center capitalize">
-					Jawaban yang Benar adalah<br /><b class="msg-key uppercase">remoh</b>
-				</p>
+	<!-- JAVASCRIPT -->
+	<script type="application/javascript" src="data/final.js"></script>
+	<script type="application/javascript" src="script.js"></script>
+</body>
 
-				<a
-					class="msg-link mt-auto p-2 bg-slate-300 rounded-md text-xs"
-					href="https://kbbi.kemdikbud.go.id/"
-					target="_blank"
-				>
-					<button class="msg-link-bttn">Lihat Arti Kata di KBBI</button>
-				</a>
-			</div>
-		</section>
-
-		<!-- JAVASCRIPT -->
-		<script type="application/javascript" src="data/final.js"></script>
-		<script type="application/javascript" src="script.js"></script>
-	</body>
 </html>
