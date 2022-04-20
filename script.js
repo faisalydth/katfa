@@ -23,6 +23,11 @@ const darkMode = document.getElementById("dark-mode");
 // CORRECT/INCORRECT ANSWER MESSAGE
 const popupClose = document.querySelectorAll(".popup-close");
 const msgLink = document.getElementsByClassName("msg-link");
+const msgKey = document.getElementsByClassName("msg-key");
+const msgIncor = document.getElementById("msg-incor");
+const msgWon = document.getElementById("msg-won");
+const msgLose = document.getElementById("msg-lose");
+
 
 // INIT ANSWER KEY
 let randIntList = [];
@@ -47,6 +52,30 @@ let statsWonCount = parseInt(statsWon.textContent);
 let statsStrCurCount = parseInt(statsStrCur.textContent);
 let statsStrMaxCount = parseInt(statsStrMax.textContent);
 
+// function to show message game won/lose by timer
+function msgPopupTimer(element, timer) {
+	element.parentElement.classList.remove("hidden");
+	if (!element.parentElement.classList.contains("hidden")) {
+		setTimeout(() => {
+			element.parentElement.classList.add("hidden");
+		}, timer);
+	};
+};
+
+// function to reset box color and character
+function resetBox(element) {
+	for (let i = 0; i < element.length; i++) {
+		if (element[i].classList.contains("box-green")) {
+			element[i].classList.toggle("box-green");
+		} else if (element[i].classList.contains("box-orange")) {
+			element[i].classList.toggle("box-orange");
+		} else if (element[i].classList.contains("box-grey")) {
+			element[i].classList.toggle("box-grey");
+		};
+		element[i].textContent = '';
+	};
+};
+
 // SUBMIT ANSWER WITH PHYSICAL KEYBOARD
 document.addEventListener("keydown", (eventKey) => {
 	let keyCode = eventKey.code;
@@ -62,75 +91,26 @@ document.addEventListener("keydown", (eventKey) => {
 			};
 			// validate if user's answer is valid
 			if (data.includes(userAnsWord)) {
-				// // validate if user's answer is not duplicated (save answer)
+				// validate if user's answer is not duplicated (save answer)
 				if (userAnsList.includes(userAnsWord) === false) {
 					userAnsList.push(userAnsWord);
 					// validate if user's answer is true (game won)
 					if (userAnsWord === ansKey) {
-						// reset box color and character
-						resetGame(boardChar);
-						console.log('You Won!');
-						// add stats
+						// console.log('You Won!');
 						isWon = true;
-						scoreWonCount += 1;
-						scoreWon.textContent = scoreWonCount;
-						// refresh distribution
-						distAnsList[boardWordCount] += 1;
-						distAns[boardWordCount].textContent = distAnsList[boardWordCount];
-						let distAnsSum = distAnsList.reduce((a, b) => a + b);
-						let distAnsMax = Math.max(...distAnsList);
-						for (let i = 0; i < distAnsPctList.length; i++) {
-							distAnsPctList[i] = Math.round(distAnsList[i] / distAnsSum * 100);
-							distAns[i].style.width = distAnsPctList[i] + '%';
-						};
-						for (let i = 0; i < distAns.length; i++) {
-							console.log(distAns[i].textContent, distAnsMax);
-							if (distAns[i].textContent == distAnsMax) {
-								distAns[i].classList.add("box-green");
-								distAns[i].classList.remove("box-orange");
-							} else if (distAns[i].textContent != '0') {
-								distAns[i].classList.add("box-orange");
-								distAns[i].classList.remove("box-green");
-							};
-						};
-						// reset word counter, saved answer and last position
-						boardWordCount = 0;
-						userAnsList = [];
-						boardLastPos = 0;
+						// show message
+						insertAnsKeyLink(ansKey);
+						msgPopupTimer(msgWon, 3000);
+						// generate stats
+						generateStats(isWon);
+						// reset box color and character
+						resetBox(boardChar);
 					} else {
-						let userAnsCharList = userAnsWord.split('');
-						let ansKeyCharList = ansKey.split('');
-						let userAnsCharGreenList = [];
-						// user's answer character position checking
-						for (let i = 0; i < userAnsWord.length; i++) {
-							let userAnsChar = userAnsCharList[i];
-							let ansKeyChar = ansKeyCharList[i];
-							// validate if character and position is valid
-							if (userAnsChar === ansKeyChar) {
-								boardWordChild[i].classList.add("box-green");
-								userAnsCharGreenList.push(userAnsChar);
-							} else if (userAnsChar !== ansKeyChar && ansKey.includes(userAnsChar)) {
-								boardWordChild[i].classList.add("box-orange");
-							} else {
-								boardWordChild[i].classList.add("box-grey");
-							};
-						};
-						let userAnsUniqueCharCount = countUniqueList(userAnsCharGreenList);
-						let ansKeyUniqueCharCount = countUniqueList(ansKeyCharList);
-						for (let i = 0; i < boardWordChild.length; i++) {
-							// validate orange box
-							if (boardWordChild[i].classList.contains("box-orange")) {
-								let userAnsChar = boardWordChild[i].textContent;
-								// validate if character is full
-								if (userAnsUniqueCharCount[userAnsChar] >= ansKeyUniqueCharCount[userAnsChar]) {
-									boardWordChild[i].classList.remove("box-orange");
-									boardWordChild[i].classList.add("box-grey");
-								};
-							};
-						};
 						// add word counter and last position
 						boardWordCount += 1;
 						boardLastPos += 1;
+						// fill box background color
+						fillBackgroundBox(boardWordChild);
 					};
 					// reset character counter
 					boardCharCount = 0;
@@ -138,22 +118,23 @@ document.addEventListener("keydown", (eventKey) => {
 					shakeAnsBox();
 					setTimeout(shakeAnsBox, 500);
 				};
+			} else {
+				shakeAnsBox();
+				setTimeout(shakeAnsBox, 500);
+				msgPopupTimer(msgIncor, 1000);
 			};
 			// clear answer box
 			userAnsWord = '';
 		};
 		// game lose
 		if (boardLastPos === 6 && isWon === false) {
-			console.log('You Lose!');
+			// console.log('You Lose!');
+			insertAnsKeyLink(ansKey);
+			msgPopupTimer(msgLose, 3000);
 			// reset box color and character
-			resetGame(boardChar);
-			// add stats
-			scoreLoseCount += 1;
-			scoreLose.textContent = scoreLoseCount;
-			// reset word counter, saved answer, and last position
-			boardWordCount = 0;
-			userAnsList = [];
-			boardLastPos = 0;
+			generateStats(isWon);
+			// show message
+			resetBox(boardChar);
 		};
 	};
 });
@@ -201,21 +182,69 @@ keybrdErase.addEventListener("click", clearAnsBox);
 document.addEventListener("keydown", (eventKey) => {
 	let keyCode = eventKey.code;
 	// validate if keydown event is backspace
-	if (keyCode === 'Backspace') {
-		// validate if answer box is filled
-		if (boardCharCount > 0) {
-			deleteAnsBox();
-		};
-	};
+	if (keyCode === 'Backspace') { deleteAnsBox(); };
 });
 
 // DELETE ANSWER BOX WITH VIRTUAL KEYBOARD
-keybrdBspace.addEventListener("click", () => {
-	// validate if answer box is filled
-	if (boardCharCount > 0) {
-		deleteAnsBox();
+keybrdBspace.addEventListener("click", deleteAnsBox);
+
+// function to refresh answer distribution
+function refreshDistAns() {
+	distAnsList[boardWordCount] += 1;
+	distAns[boardWordCount].textContent = distAnsList[boardWordCount];
+	let distAnsSum = distAnsList.reduce((a, b) => a + b);
+	let distAnsMax = Math.max(...distAnsList);
+	for (let i = 0; i < distAnsPctList.length; i++) {
+		distAnsPctList[i] = Math.round(distAnsList[i] / distAnsSum * 100);
+		distAns[i].style.width = distAnsPctList[i] + '%';
 	};
-});
+	for (let i = 0; i < distAns.length; i++) {
+		if (distAns[i].textContent == distAnsMax) {
+			distAns[i].classList.add("box-green");
+			distAns[i].classList.remove("box-orange");
+		} else if (distAns[i].textContent != '0') {
+			distAns[i].classList.add("box-orange");
+			distAns[i].classList.remove("box-green");
+		};
+	};
+};
+
+// function to generate stats
+function generateStats(isWon) {
+	// add game counter
+	gameCount += 1;
+	gameCounter.textContent = gameCount;
+	// add stats
+	statsGameCount += 1;
+	statsGame.textContent = statsGameCount;
+	statsWonCount = Math.round(scoreWonCount / statsGameCount * 100);
+	statsWon.textContent = statsWonCount;
+	// validate if game won or lose
+	if (isWon === true) {
+		scoreWonCount += 1;
+		scoreWon.textContent = scoreWonCount;
+		statsStrCurCount += 1
+		statsStrCur.textContent = statsStrCurCount;
+		if (statsStrCurCount > statsStrMaxCount) {
+			statsStrMaxCount += 1;
+			statsStrMax.textContent = statsStrMaxCount;
+		};
+		// refresh answer distribution
+		refreshDistAns();
+	} else {
+		scoreLoseCount += 1;
+		scoreLose.textContent = scoreLoseCount;
+		statsStrCurCount = 0;
+		statsStrCur.textContent = statsStrCurCount;
+	};
+	// reset word counter, saved answer, and last position
+	boardWordCount = 0;
+	userAnsList = [];
+	boardLastPos = 0;
+	// generate answer key
+	generateAnsKey();
+	// console.log(ansKey);
+};
 
 // function to generate random integer
 function generateRandInt(min, max) {
@@ -237,6 +266,48 @@ function generateAnsKey() {
 	};
 	// apply answer key with index of data
 	ansKey = data[randInt];
+};
+
+// function to insert answer key link
+function insertAnsKeyLink(ansKey) {
+	for (let i = 0; i < msgLink.length; i++) {
+		msgLink[i].href = 'https://kbbi.kemdikbud.go.id/entri/' + ansKey.toLowerCase();
+		msgKey[i].textContent = ansKey;
+	};
+};
+
+// function to fill box background color after submit answer
+function fillBackgroundBox(boardWordChild) {
+	let userAnsCharList = userAnsWord.split('');
+	let ansKeyCharList = ansKey.split('');
+	let userAnsCharGreenList = [];
+	// user's answer character position checking
+	for (let i = 0; i < userAnsWord.length; i++) {
+		let userAnsChar = userAnsCharList[i];
+		let ansKeyChar = ansKeyCharList[i];
+		// validate if character and position is valid
+		if (userAnsChar === ansKeyChar) {
+			boardWordChild[i].classList.add("box-green");
+			userAnsCharGreenList.push(userAnsChar);
+		} else if (userAnsChar !== ansKeyChar && ansKey.includes(userAnsChar)) {
+			boardWordChild[i].classList.add("box-orange");
+		} else {
+			boardWordChild[i].classList.add("box-grey");
+		};
+	};
+	let userAnsUniqueCharCount = countUniqueList(userAnsCharGreenList);
+	let ansKeyUniqueCharCount = countUniqueList(ansKeyCharList);
+	for (let i = 0; i < boardWordChild.length; i++) {
+		// validate orange box
+		if (boardWordChild[i].classList.contains("box-orange")) {
+			let userAnsChar = boardWordChild[i].textContent;
+			// validate if character is full
+			if (userAnsUniqueCharCount[userAnsChar] >= ansKeyUniqueCharCount[userAnsChar]) {
+				boardWordChild[i].classList.remove("box-orange");
+				boardWordChild[i].classList.add("box-grey");
+			};
+		};
+	};
 };
 
 // function to fill answer box
@@ -269,11 +340,14 @@ function clearAnsBox() {
 
 // function to delete answer box
 function deleteAnsBox() {
-	// substract character counter
-	boardCharCount -= 1;
-	// delete answer box
-	let selectedAnsBox = boardWord[boardWordCount].children[boardCharCount];
-	selectedAnsBox.textContent = '';
+	// validate if answer box is filled
+	if (boardCharCount > 0) {
+		// substract character counter
+		boardCharCount -= 1;
+		// delete answer box
+		let selectedAnsBox = boardWord[boardWordCount].children[boardCharCount];
+		selectedAnsBox.textContent = '';
+	};
 };
 
 // function to count unique value of list
@@ -283,23 +357,6 @@ function countUniqueList(list) {
 		count[s] ? count[s]++ : count[s] = 1;
 	});
 	return count;
-};
-
-// function to reset box color and character
-function resetGame(element) {
-	for (let i = 0; i < element.length; i++) {
-		element[i].classList.remove("box-green");
-		element[i].classList.remove("box-orange");
-		element[i].classList.remove("box-grey");
-		element[i].textContent = '';
-	};
-	// add game counter
-	gameCount += 1;
-	gameCounter.textContent = gameCount;
-	statsGameCount += 1;
-	statsGame.textContent = statsGameCount;
-	generateAnsKey();
-	console.log(ansKey);
 };
 
 // DARK MODE
@@ -328,7 +385,6 @@ navBttn.forEach((navBttn) => {
 		popup.classList.remove("hidden");
 	});
 });
-
 popupClose.forEach((close) => {
 	close.addEventListener("click", () => {
 		const parent = close.parentElement;
@@ -336,13 +392,15 @@ popupClose.forEach((close) => {
 	});
 });
 
-// Message Incorrect close by timer for 2 second
-const msgIncor = document.getElementById("msg-incor");
-if (!msgIncor.parentElement.classList.contains("hidden")) {
-	setTimeout(() => {
-		msgIncor.parentElement.classList.add("hidden");
-	}, 2000);
-}
+// function to show message by timer
+function msgPopupTimer(element, timer) {
+	element.parentElement.classList.remove("hidden");
+	if (!element.parentElement.classList.contains("hidden")) {
+		setTimeout(() => {
+			element.parentElement.classList.add("hidden");
+		}, timer);
+	};
+};
 
 // ACTIVE ELEMENT HANDLING
 document.addEventListener("click", () => {
@@ -350,4 +408,4 @@ document.addEventListener("click", () => {
 });
 
 // Print variables (temporary)
-console.log(ansKey);
+// console.log(ansKey);
