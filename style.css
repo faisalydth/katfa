@@ -230,7 +230,7 @@ object,
 svg,
 video {
 	display: block;
-	vertical-align: middle;
+	/* vertical-align: middle; */
 }
 
 img,
@@ -874,6 +874,7 @@ h6 {
 	}
 }
 
+.dark .box-grey,
 .box-grey {
 	--tw-bg-opacity: 1;
 	--tw-text-opacity: 1;
@@ -882,6 +883,7 @@ h6 {
 	color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.dark .box-green,
 .box-green {
 	--tw-bg-opacity: 1;
 	--tw-text-opacity: 1;
@@ -890,6 +892,7 @@ h6 {
 	color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.dark .box-orange,
 .box-orange {
 	--tw-bg-opacity: 1;
 	--tw-text-opacity: 1;

@@ -28,7 +28,6 @@ const msgIncor = document.getElementById("msg-incor");
 const msgWon = document.getElementById("msg-won");
 const msgLose = document.getElementById("msg-lose");
 
-
 // INIT ANSWER KEY
 let randIntList = [];
 let ansKey = '';
@@ -52,91 +51,20 @@ let statsWonCount = parseInt(statsWon.textContent);
 let statsStrCurCount = parseInt(statsStrCur.textContent);
 let statsStrMaxCount = parseInt(statsStrMax.textContent);
 
-// function to show message game won/lose by timer
-function msgPopupTimer(element, timer) {
-	element.parentElement.classList.remove("hidden");
-	if (!element.parentElement.classList.contains("hidden")) {
-		setTimeout(() => {
-			element.parentElement.classList.add("hidden");
-		}, timer);
-	};
-};
-
-// function to reset box color and character
-function resetBox(element) {
-	for (let i = 0; i < element.length; i++) {
-		if (element[i].classList.contains("box-green")) {
-			element[i].classList.toggle("box-green");
-		} else if (element[i].classList.contains("box-orange")) {
-			element[i].classList.toggle("box-orange");
-		} else if (element[i].classList.contains("box-grey")) {
-			element[i].classList.toggle("box-grey");
-		};
-		element[i].textContent = '';
-	};
-};
-
 // SUBMIT ANSWER WITH PHYSICAL KEYBOARD
 document.addEventListener("keydown", (eventKey) => {
 	let keyCode = eventKey.code;
 	let isWon = false;
 	// validate if keydown event is enter
 	if (keyCode === 'Enter' || keyCode === 'NumpadEnter') {
-		// validate if answer box is fully filled
-		if (boardWordCount < 6 && boardCharCount === 5) {
-			// generate user's answer
-			let boardWordChild = boardWord[boardWordCount].children
-			for (let i = 0; i < boardWordChild.length; i++) {
-				userAnsWord += boardWordChild[i].textContent;
-			};
-			// validate if user's answer is valid
-			if (data.includes(userAnsWord)) {
-				// validate if user's answer is not duplicated (save answer)
-				if (userAnsList.includes(userAnsWord) === false) {
-					userAnsList.push(userAnsWord);
-					// validate if user's answer is true (game won)
-					if (userAnsWord === ansKey) {
-						// console.log('You Won!');
-						isWon = true;
-						// show message
-						insertAnsKeyLink(ansKey);
-						msgPopupTimer(msgWon, 3000);
-						// generate stats
-						generateStats(isWon);
-						// reset box color and character
-						resetBox(boardChar);
-					} else {
-						// add word counter and last position
-						boardWordCount += 1;
-						boardLastPos += 1;
-						// fill box background color
-						fillBackgroundBox(boardWordChild);
-					};
-					// reset character counter
-					boardCharCount = 0;
-				} else {
-					shakeAnsBox();
-					setTimeout(shakeAnsBox, 500);
-				};
-			} else {
-				shakeAnsBox();
-				setTimeout(shakeAnsBox, 500);
-				msgPopupTimer(msgIncor, 1000);
-			};
-			// clear answer box
-			userAnsWord = '';
-		};
-		// game lose
-		if (boardLastPos === 6 && isWon === false) {
-			// console.log('You Lose!');
-			insertAnsKeyLink(ansKey);
-			msgPopupTimer(msgLose, 3000);
-			// reset box color and character
-			generateStats(isWon);
-			// show message
-			resetBox(boardChar);
-		};
+		validateSubmitAns(isWon);
 	};
+});
+
+// SUBMIT ANSWER WITH VIRTUAL KEYBOARD
+keybrdEnter.addEventListener("click", () => {
+	let isWon = false;
+	validateSubmitAns(isWon);
 });
 
 // FILL ANSWER BOX WITH PHYSICAL KEYBOARD
@@ -187,6 +115,72 @@ document.addEventListener("keydown", (eventKey) => {
 
 // DELETE ANSWER BOX WITH VIRTUAL KEYBOARD
 keybrdBspace.addEventListener("click", deleteAnsBox);
+
+// function to validate submitted answer
+function validateSubmitAns(isWon) {
+	// validate if answer box is fully filled
+	if (boardWordCount < 6 && boardCharCount === 5) {
+		// generate user's answer
+		let boardWordChild = boardWord[boardWordCount].children
+		for (let i = 0; i < boardWordChild.length; i++) {
+			userAnsWord += boardWordChild[i].textContent;
+		};
+		// validate if user's answer is valid
+		if (data.includes(userAnsWord)) {
+			// validate if user's answer is not duplicated (save answer)
+			if (userAnsList.includes(userAnsWord) === false) {
+				userAnsList.push(userAnsWord);
+				// validate if user's answer is true (game won)
+				if (userAnsWord === ansKey) {
+					// console.log('You Won!');
+					isWon = true;
+					// show message
+					insertAnsKeyLink(ansKey);
+					msgPopupTimer(msgWon, 3000);
+					// generate stats
+					generateStats(isWon);
+					// reset box color and character
+					resetBoxColor(boardChar);
+					resetBoxChar(boardChar);
+					resetBoxColor(keybrdChar);
+				} else {
+					// add word counter and last position
+					boardWordCount += 1;
+					boardLastPos += 1;
+					// fill box and keyboard background color
+					fillBackgroundBox(boardWordChild);
+					fillBackgroundKeybrd(boardWordChild);
+				};
+				// reset character counter
+				boardCharCount = 0;
+			} else {
+				shakeAnsBox();
+				setTimeout(shakeAnsBox, 500);
+			};
+		} else {
+			shakeAnsBox();
+			setTimeout(shakeAnsBox, 500);
+			msgPopupTimer(msgIncor, 1000);
+		};
+		// clear answer box
+		userAnsWord = '';
+	} else {
+		shakeAnsBox();
+		setTimeout(shakeAnsBox, 500);
+	};
+	// game lose
+	if (boardLastPos === 6 && isWon === false) {
+		// console.log('You Lose!');
+		insertAnsKeyLink(ansKey);
+		msgPopupTimer(msgLose, 3000);
+		// generate stats
+		generateStats(isWon);
+		// reset box color and character
+		resetBoxColor(boardChar);
+		resetBoxChar(boardChar);
+		resetBoxColor(keybrdChar);
+	};
+};
 
 // function to refresh answer distribution
 function refreshDistAns() {
@@ -243,7 +237,7 @@ function generateStats(isWon) {
 	boardLastPos = 0;
 	// generate answer key
 	generateAnsKey();
-	// console.log(ansKey);
+	// console.log(gameCount, ansKey);
 };
 
 // function to generate random integer
@@ -274,6 +268,35 @@ function insertAnsKeyLink(ansKey) {
 		msgLink[i].href = 'https://kbbi.kemdikbud.go.id/entri/' + ansKey.toLowerCase();
 		msgKey[i].textContent = ansKey;
 	};
+};
+
+// function to reset box color
+function resetBoxColor(element) {
+	for (let i = 0; i < element.length; i++) {
+		if (element[i].classList.contains("box-green")) {
+			element[i].classList.remove("box-green");
+		} else if (element[i].classList.contains("box-orange")) {
+			element[i].classList.remove("box-orange");
+		} else if (element[i].classList.contains("box-grey")) {
+			element[i].classList.remove("box-grey");
+		};
+	};
+};
+
+// function to reset box character
+function resetBoxChar(element) {
+	for (let i = 0; i < element.length; i++) {
+		element[i].textContent = '';
+	};
+};
+
+// function to fill answer box
+function fillAnsBox(userAns) {
+	// fill answer box
+	let selectedAnsBox = boardWord[boardWordCount].children[boardCharCount];
+	selectedAnsBox.textContent = userAns;
+	// add character counter
+	boardCharCount += 1;
 };
 
 // function to fill box background color after submit answer
@@ -310,13 +333,34 @@ function fillBackgroundBox(boardWordChild) {
 	};
 };
 
-// function to fill answer box
-function fillAnsBox(userAns) {
-	// fill answer box
-	let selectedAnsBox = boardWord[boardWordCount].children[boardCharCount];
-	selectedAnsBox.textContent = userAns;
-	// add character counter
-	boardCharCount += 1;
+// function to fill keyboard color after submit answer;
+function fillBackgroundKeybrd(boardWordChild) {
+	for (let i = 0; i < boardWordChild.length; i++) {
+		let userAnsChar = boardWordChild[i].textContent;
+		if (boardWordChild[i].classList.contains("box-green")) {
+			for (let i = 0; i < keybrdChar.length; i++) {
+				if (keybrdChar[i].textContent === userAnsChar) {
+					keybrdChar[i].classList.add("box-green");
+				};
+			};
+		} else if (boardWordChild[i].classList.contains("box-orange")) {
+			for (let i = 0; i < keybrdChar.length; i++) {
+				if (keybrdChar[i].textContent === userAnsChar) {
+					if (!keybrdChar[i].classList.contains("box-green")) {
+						keybrdChar[i].classList.add("box-orange");
+					};
+				};
+			};
+		} else if (boardWordChild[i].classList.contains("box-grey")) {
+			for (let i = 0; i < keybrdChar.length; i++) {
+				if (keybrdChar[i].textContent === userAnsChar) {
+					if (!keybrdChar[i].classList.contains("box-green") && !keybrdChar[i].classList.contains("box-orange")) {
+						keybrdChar[i].classList.add("box-grey");
+					};
+				};
+			};
+		};
+	};
 };
 
 // function to shake answer box if fully filled
@@ -408,4 +452,4 @@ document.addEventListener("click", () => {
 });
 
 // Print variables (temporary)
-// console.log(ansKey);
+// console.log(gameCount, ansKey);
