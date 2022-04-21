@@ -14,7 +14,10 @@
 		rel="stylesheet" />
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" /> -->
 	<link rel="stylesheet" href="style.css" />
 </head>
 
@@ -29,14 +32,16 @@
 				<div>
 					<!-- Button -->
 					<button class="nav-bttn">
-						<i class="uil uil-question-circle"></i>
+						<!-- <i class="uil uil-question-circle"></i> -->
+						<i class="fa-solid fa-circle-question"></i>
 					</button>
 
 					<!-- Popup -->
 					<section class="popup hidden">
 						<div id="game-info" class="popup-container">
 							<button class="popup-close">
-								<i class="uil uil-times"></i>
+								<!-- <i class="uil uil-times"></i> -->
+								<i class="fa-solid fa-xmark"></i>
 							</button>
 
 							<h2 class="popup-title">CARA BERMAIN</h2>
@@ -93,14 +98,16 @@
 					<div class="inline-block">
 						<!-- Button -->
 						<button class="nav-bttn">
-							<i class="uil uil-info-circle"></i>
+							<!-- <i class="uil uil-info-circle"></i> -->
+							<i class="fa-solid fa-circle-info"></i>
 						</button>
 
 						<!-- Popup -->
 						<section class="popup hidden">
 							<div id="game-stats" class="popup-container">
 								<button class="popup-close">
-									<i id="close" class="uil uil-times"></i>
+									<!-- <i id="close" class="uil uil-times"></i> -->
+									<i id="close" class="fa-solid fa-xmark"></i>
 								</button>
 
 								<h2 class="popup-title">STATISTIK PERMAINAN</h2>
@@ -158,14 +165,16 @@
 					<div class="inline-block">
 						<!-- Button -->
 						<button class="nav-bttn">
-							<i class="uil uil-setting"></i>
+							<!-- <i class="uil uil-setting"></i> -->
+							<i class="fa-solid fa-gear"></i>
 						</button>
 
 						<!-- Popup -->
 						<section class="popup hidden">
 							<div id="game-sets" class="popup-container flex flex-col justify-between">
 								<button class="popup-close">
-									<i class="uil uil-times"></i>
+									<!-- <i class="uil uil-times"></i> -->
+									<i class="fa-solid fa-xmark"></i>
 								</button>
 
 								<div>
@@ -195,12 +204,15 @@
 										</p>
 										<p class="text-xxs md:text-sm">
 											by
-											<a href="https://github.com/faisalydth" target="_blank"><i
-													class="uil uil-github mr-1"></i>faisalydth
+											<a href="https://github.com/faisalydth" target="_blank">
+												<!-- <i class="uil uil-github mr-1"></i> -->
+												<i class="fa-brands fa-github"></i>&nbsp;faisalydth
 											</a>
 											&#215;
-											<a href="https://github.com/farrelahmady" target="_blank"><i
-													class="uil uil-github mr-1"></i>farrelahmady</a>
+											<a href="https://github.com/farrelahmady" target="_blank">
+												<!-- <i class="uil uil-github mr-1"></i> -->
+												<i class="fa-brands fa-github"></i>&nbsp;farrelahmady
+											</a>
 										</p>
 									</div>
 
@@ -315,7 +327,8 @@
 					<button class="keybrd-key keybrd-char">O</button>
 					<button class="keybrd-key keybrd-char">P</button>
 					<button id="keybrd-erase" class="keybrd-key">
-						<i class="uil uil-times-square"></i>
+						<!-- <i class="uil uil-times-square"></i> -->
+						<i class="fa-solid fa-broom"></i>
 					</button>
 				</div>
 
@@ -330,7 +343,8 @@
 					<button class="keybrd-key keybrd-char">K</button>
 					<button class="keybrd-key keybrd-char">L</button>
 					<button id="keybrd-bspace" class="keybrd-key">
-						<i class="uil uil-backspace"></i>
+						<!-- <i class="uil uil-backspace"></i> -->
+						<i class="fa-solid fa-delete-left"></i>
 					</button>
 				</div>
 
@@ -343,7 +357,8 @@
 					<button class="keybrd-key keybrd-char">N</button>
 					<button class="keybrd-key keybrd-char">M</button>
 					<button id="keybrd-enter" class="keybrd-key">
-						enter <i class="uil uil-enter"></i>
+						enter&nbsp;<i class="fa-solid fa-arrow-left-long"></i>
+						<!-- <i class="uil uil-enter"></i> -->
 					</button>
 				</div>
 			</div>
@@ -354,7 +369,8 @@
 	<section class="popup hidden">
 		<div id="msg-incor" class="popup-container min-h-[25%] flex justify-center items-center">
 			<button class="popup-close">
-				<i class="uil uil-times"></i>
+				<!-- <i class="uil uil-times"></i> -->
+				<i class="fa-solid fa-xmark"></i>
 			</button>
 
 			<p class="text-2xl">Kata tidak tersedia di KBBI.</p>
@@ -365,7 +381,8 @@
 	<section class="popup hidden">
 		<div id="msg-won" class="popup-container min-h-[25%] flex flex-col items-center">
 			<button class="popup-close">
-				<i class="uil uil-times"></i>
+				<!-- <i class="uil uil-times"></i> -->
+				<i class="fa-solid fa-xmark"></i>
 			</button>
 
 			<p class="text-2xl py-8 text-center">
@@ -383,7 +400,8 @@
 	<section class="popup hidden">
 		<div id="msg-lose" class="popup-container min-h-[25%] flex flex-col items-center">
 			<button class="popup-close">
-				<i class="uil uil-times"></i>
+				<!-- <i class="uil uil-times"></i> -->
+				<i class="fa-solid fa-xmark"></i>
 			</button>
 
 			<p class="text-2xl py-8 text-center capitalize">
