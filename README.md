@@ -10,7 +10,9 @@ Katla Imitation App
 ### KATFA v1.1.0
 20 April 2022
 - Improved UI
+- Add application logo
 
 ### KATFA v1.2.0
 21 April 2022
 - Fixed keyboard color issue (minor bugs)
+- Change icon
