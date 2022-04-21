@@ -340,13 +340,16 @@ function fillBackgroundKeybrd(boardWordChild) {
 		if (boardWordChild[i].classList.contains("box-green")) {
 			for (let i = 0; i < keybrdChar.length; i++) {
 				if (keybrdChar[i].textContent === userAnsChar) {
+					keybrdChar[i].classList.remove("box-grey");
+					keybrdChar[i].classList.remove("box-orange");
 					keybrdChar[i].classList.add("box-green");
 				};
 			};
 		} else if (boardWordChild[i].classList.contains("box-orange")) {
 			for (let i = 0; i < keybrdChar.length; i++) {
 				if (keybrdChar[i].textContent === userAnsChar) {
-					if (!keybrdChar[i].classList.contains("box-green")) {
+					if (keybrdChar[i].classList.contains("box-green") === false) {
+						keybrdChar[i].classList.remove("box-grey");
 						keybrdChar[i].classList.add("box-orange");
 					};
 				};
@@ -354,7 +357,7 @@ function fillBackgroundKeybrd(boardWordChild) {
 		} else if (boardWordChild[i].classList.contains("box-grey")) {
 			for (let i = 0; i < keybrdChar.length; i++) {
 				if (keybrdChar[i].textContent === userAnsChar) {
-					if (!keybrdChar[i].classList.contains("box-green") && !keybrdChar[i].classList.contains("box-orange")) {
+					if (keybrdChar[i].classList.contains("box-green") === false && keybrdChar[i].classList.contains("box-orange") === false) {
 						keybrdChar[i].classList.add("box-grey");
 					};
 				};
