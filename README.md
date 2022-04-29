@@ -1,5 +1,6 @@
-# katla-imitation
-Katla Imitation App
+# KATFA
+Word Board Game
+Inspired by Katla & Wordle
 
 ## Version Control
 
