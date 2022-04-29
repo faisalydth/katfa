@@ -1,6 +1,5 @@
 # KATFA
-Word Board Game
-Inspired by Katla & Wordle
+A word guessing game inspired by Katla & Wordle.
 
 ## Version Control
 
