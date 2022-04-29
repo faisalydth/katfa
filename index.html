@@ -5,8 +5,8 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="author" content="Faisal Adam Yudithia & Farrel Ahmad Yudithia" />
-	<title>KATFA</title>
-	<link rel="shortcut icon" type="image/x-icon" href="img/katfa-logo.ico" />
+	<title>Katfa</title>
+	<link rel="shortcut icon" type="image/x-icon" href="img/ico/katfa-full.ico" />
 
 	<!-- Font Poppins -->
 	<link
@@ -18,7 +18,7 @@
 		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" /> -->
-	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
@@ -48,7 +48,7 @@
 
 							<div class="flex flex-col gap-2 mb-4">
 								<p>
-									Tebak <b>KAT<span style="color: red">F</span>A</b> dalam 6
+									Tebak <b>KAT<span style="color: hsl(142, 72%, 29%)">F</span>A</b> dalam 6
 									kesempatan. Permainan ini berisi 6000+ kata rahasia.
 								</p>
 								<p>
@@ -88,7 +88,7 @@
 				<!-- TITLE & GAME COUNTER -->
 
 				<div class="title-container">
-					<h1 id="title">KAT<span style="color: red">F</span>A</h1>
+					<h1 id="title">KAT<span style="color: hsl(142, 72%, 29%)">F</span>A</h1>
 					<p>#<span id="game-counter">1</span></p>
 				</div>
 
@@ -198,12 +198,13 @@
 								<div>
 									<h3 class="text-center mb-2 md:mb-4">Informasi Aplikasi</h3>
 
-									<div class="text-center mb-2 md:mb-4">
-										<p>
-											<b>KAT<span style="color: red">F</span>A</b>
-										</p>
-										<p class="text-xxs md:text-sm">
-											by
+									<div class="text-center mb-2 md:mb-4 flex flex-col items-center">
+										<!-- <p>
+											<b>KAT<span style="color: hsl(142, 72%, 29%)">F</span>A</b>
+										</p> -->
+										<img id="katfa-circle" class="mb-4" src="img/png/katfa-circle.png" alt="">
+										<p class="text-xs md:text-sm">
+											developed by<br>
 											<a href="https://github.com/faisalydth" target="_blank">
 												<!-- <i class="uil uil-github mr-1"></i> -->
 												<i class="fa-brands fa-github"></i>&nbsp;faisalydth
@@ -218,12 +219,10 @@
 
 									<div class="text-center mb-2 md:mb-4">
 										<div class="text-xxs md:text-sm text-slate-500">
-											<!-- <p>v1.0.0 - 17 April 2022 - First release</p> -->
-											<!-- <p>v1.1.0 - 20 April 2022 - Improved UI</p> -->
-											<p>v1.2.0 - 21 April 2022</p>
+											<p>Last update v1.2.1 - 29 April 2022</p>
 											<p>Fixed minor bugs</p>
 											<p>
-												<a href="https://github.com/faisalydth/katla-imitation" target="_blank"
+												<a href="https://github.com/faisalydth/katfa" target="_blank"
 													class="text-xxs md:text-xs text-slate-400">
 													[Lihat Source Code]
 												</a>
@@ -417,7 +416,7 @@
 
 	<!-- JAVASCRIPT -->
 	<script type="application/javascript" src="data/data.js"></script>
-	<script type="application/javascript" src="script.js"></script>
+	<script type="application/javascript" src="js/main.js"></script>
 </body>
 
 </html>

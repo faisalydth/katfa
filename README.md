@@ -22,3 +22,9 @@ https://faisalydth.github.io/katfa/
 21 April 2022
 - Fixed keyboard color issue (minor bugs)
 - Change icon
+
+### KATFA v1.2.1
+
+29 April 2022
+- Fixed popup issue (minor bugs)
+- Change logo and icon
